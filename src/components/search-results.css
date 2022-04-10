@@ -1,0 +1,13 @@
+.search-result-item {
+  border: solid 3px blue;
+  margin: 10px;
+  display: flex;
+}
+
+.search-result-item__title {
+  font-size: 20px;
+}
+
+.search-result-item__data {
+  flex-grow: 1;
+}
