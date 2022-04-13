@@ -2,9 +2,14 @@ import React from "react";
 import css from "./index.css";
 
 type PropsBoton = {
-  children: string;
+  children: any;
+  onClick;
 };
 
 export function MainButton(props: PropsBoton) {
-  return <button className={css.root}>{props.children}</button>;
+  return (
+    <button onClick={props.onClick} className={css.root}>
+      {props.children}
+    </button>
+  );
 }

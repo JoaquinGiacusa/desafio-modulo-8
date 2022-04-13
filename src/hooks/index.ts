@@ -2,46 +2,56 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import { atom, selector } from "recoil";
-//import { idState } from "./atoms";
+import { getNearPets } from "../lib/api";
 
-// export function useId() {
-//   return useRecoilValue(idState);
-// }
-
-const queryState = atom({
-  key: "query",
-  default: "",
+const locPermission = atom({
+  key: "locPermission",
+  default: false,
 });
 
-const resultsState = selector({
-  key: "searchResults",
+// export function useGetLoc() {
+//   const [locPermiss, setlocPermiss] = useRecoilState(locPermission);
+//   const [myLoc, setMyLoc] = useMyLoc();
+//   return "loc";
+// }
+
+const myLoc = atom({
+  key: "location",
+  default: {
+    lat: "",
+    lng: "",
+  },
+});
+
+export const uselocPermission = () => useRecoilState(locPermission);
+
+export const useMyLoc = () => useRecoilState(myLoc);
+// export function useMyLoc() {
+//   return useRecoilState(myLoc);
+// }
+
+//getLoc
+const searchNearPets = selector({
+  key: "petsNear",
   get: async ({ get }) => {
-    const valorDeQuery = get(queryState);
-    if (valorDeQuery) {
-      // hago la búsqueda usando la API de mercadolibre
-      const res = await fetch(
-        "https://api.mercadolibre.com/sites/MLA/search?q=" + valorDeQuery
-      );
-      const data = await res.json();
-      return data.results;
+    const myLastLocation = get(myLoc);
+    const lat = myLastLocation.lat;
+    const lng = myLastLocation.lng;
+    console.log("pase por aca");
+    console.log("myLastLocation", myLastLocation);
+
+    //retorna la llamada a la api
+    if (lat != "" && lng != "") {
+      const results = await getNearPets(lat, lng);
+
+      return results;
     } else {
-      return [];
+      return "";
     }
   },
 });
 
-// mi custom hook
-export function useSearchResults() {
-  const params = useParams();
-  const query = params.query;
-
-  const setQueryValue = useSetRecoilState(queryState);
-
-  useEffect(() => {
-    setQueryValue(query);
-  }, [query]);
-
-  const results = useRecoilValue(resultsState);
-
+export function useGetNearPets() {
+  const results = useRecoilValue(searchNearPets);
   return results;
 }

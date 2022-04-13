@@ -4,7 +4,6 @@ const liveServer = require("live-server");
 
 if (dev) {
   liveServer.start({
-    //root: "./",
     file: "index.html",
   });
 }
@@ -27,6 +26,17 @@ module.exports = {
             loader: "css-loader",
             options: {
               modules: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "svg-url-loader",
+            options: {
+              limit: 10000,
             },
           },
         ],

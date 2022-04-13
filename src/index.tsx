@@ -4,10 +4,8 @@ import { AppRoutes } from "./router";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 
-//export const MyContext = React.createContext({});
-
 ReactDOM.render(
-  <Suspense fallback={<div>Loading...</div>}>
+  <Suspense fallback={null}>
     <RecoilRoot>
       <BrowserRouter>
         <AppRoutes />

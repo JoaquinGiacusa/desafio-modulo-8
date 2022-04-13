@@ -1,0 +1,16 @@
+.card {
+  max-width: 400px;
+  border: solid 3px black;
+  border-radius: 4px;
+}
+
+.card-img {
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+}
+
+.card-text {
+  display: flex;
+  flex-grow: 1;
+}
