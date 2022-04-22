@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { MainText } from "../../ui/text-font";
-import { NearPetsResult } from "../../components/nearPetsResult";
 import { MainButton } from "../../ui/buttons";
 import css from "./homePage.css";
 import { useNavigate } from "react-router-dom";

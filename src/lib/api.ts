@@ -1,4 +1,5 @@
-const API_BASE_URL = "http://localhost:3005"; //"https://desafio-modulo7.herokuapp.com";
+//const API_BASE_URL = "http://localhost:3005";
+const API_BASE_URL = "https://desafio-modulo7.herokuapp.com";
 
 export async function getNearPets(lat, lng) {
   const res = await fetch(
