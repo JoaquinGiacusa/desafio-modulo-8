@@ -1,10 +1,11 @@
 import React from "react";
 import { MainText } from "../../ui/text-font";
 import css from "./index.css";
+import { Modal } from "../modal";
 
 type PropsNearPets = {
   //children: any;
-  //onClick;
+  openModal;
   picture: string;
   name: string;
   lastSeen: string;
@@ -19,7 +20,7 @@ export function NearPetsCard(props: PropsNearPets) {
           <MainText title={true}>{props.name}</MainText>
           <MainText>{props.lastSeen}</MainText>
         </div>
-        <MainText>REPORTAR INFORMACION</MainText>
+        <p onClick={props.openModal}>REPORTAR INFORMACION</p>
       </div>
     </div>
   );

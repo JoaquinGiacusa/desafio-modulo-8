@@ -3,7 +3,7 @@ import css from "./index.css";
 
 type PropsBoton = {
   children: any;
-  onClick;
+  onClick?;
 };
 
 export function MainButton(props: PropsBoton) {

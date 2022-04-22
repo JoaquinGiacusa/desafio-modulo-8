@@ -4,4 +4,73 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 0 20px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.openHeaderContainer {
+  width: 100vw;
+  height: 100vh;
+  background-color: #8af1ff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.closeHeaderBtnContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0 20px;
+}
+
+.closeHeaderBtn {
+  background-color: #8af1ff;
+  border: none;
+  font-size: 50px;
+}
+
+.headerLinksContainer {
+  max-width: 400px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.headerLinks {
+  display: grid;
+  gap: 150px;
+  text-align: center;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 30px;
+  color: black;
+  font-family: "Roboto", sans-serif;
+}
+
+.secionContainer {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.logout {
+  margin-top: 5px;
+  font-family: "Roboto", sans-serif;
+  color: #c6558b;
+  text-decoration: underline;
+  cursor: pointer;
 }

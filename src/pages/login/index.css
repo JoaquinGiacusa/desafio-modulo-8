@@ -1,0 +1,9 @@
+.root {
+  max-width: 335px;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.titleContainer {
+  margin-bottom: 25px;
+}
