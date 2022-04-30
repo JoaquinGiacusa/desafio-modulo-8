@@ -12,6 +12,7 @@ import {
   checkEmailUser,
   getProfile,
   updateUser,
+  getMyPets,
 } from "../lib/api";
 
 //===>
@@ -19,16 +20,17 @@ const locPermission = atom({
   key: "locPermission",
   default: false,
 });
-export function useLocPermiss() {
-  const [locPermiss, useLocPermiss] = useRecoilState(locPermission);
-  const navigate = useNavigate();
-  //si tengo la ubi paso a mostras los resultados directamente
-  useEffect(() => {
-    if (locPermiss) {
-      navigate("/near-lost-pets");
-    }
-  }, [locPermiss]);
-}
+
+// export function useLocPermiss() {
+//   const [locPermiss, useLocPermiss] = useRecoilState(locPermission);
+//   const navigate = useNavigate();
+//   //si tengo la ubi paso a mostras los resultados directamente
+//   useEffect(() => {
+//     if (locPermiss) {
+//       navigate("/near-lost-pets");
+//     }
+//   }, [locPermiss]);
+// }
 export const useGetLocPermiss = () => useRecoilState(locPermission);
 
 //===>
@@ -72,6 +74,8 @@ const searchNearPets = selector({
 
 export function useGetNearPets() {
   const results = useRecoilValue(searchNearPets);
+  console.log(results);
+
   return results;
 }
 
@@ -81,10 +85,19 @@ export function useRedirectHome(param) {
   useEffect(() => {
     if (!param) {
       navigate("/");
-    } else {
-      console.log("tengo los datos nec", param);
     }
   });
+}
+
+//si no tengo el token te manda a login
+export function useCheckLog() {
+  const navigate = useNavigate();
+  const [token, setToken] = useAuthToken();
+  useEffect(() => {
+    if (token == "" || token == null) {
+      navigate("/login");
+    }
+  }, [token]);
 }
 
 //////=>HEADER
@@ -141,25 +154,58 @@ const getUserData = selector({
   get: async ({ get }) => {
     const token = get(authToken);
     //retorna la llamada a la api
-
-    const res = await getProfile(token);
-    return res;
+    if (token) {
+      const res = await getProfile(token);
+      return res;
+    } else {
+      return false;
+    }
   },
 });
 
 export function useProfileData() {
   const userData = useRecoilValue(getUserData);
 
-  const [authToken, setAuthToken] = useAuthToken();
   const [userName, setUserName] = useUserName();
   const [userEmail, setUserEmail] = useUserEmail();
 
   useEffect(() => {
-    setUserName(userData.fullName);
-    setUserEmail(userData.email);
+    if (userData) {
+      setUserName(userData.fullName);
+      setUserEmail(userData.email);
+    }
   }, [userData]);
 
-  return userName;
+  // return userName;
+}
+
+//mis mascotas publicadas
+const myLostPets = atom({
+  key: "myLostPets",
+  default: [],
+});
+
+const getMyLostPets = selector({
+  key: "getMyLostPets",
+  get: async ({ get }) => {
+    const token = get(authToken);
+    if (token) {
+      const res = await getMyPets(token);
+      console.log("res", res);
+      return res;
+    } else {
+      return "xd";
+    }
+  },
+});
+
+export function useMyLostPets() {
+  const [myPets, setMyPets] = useRecoilState(myLostPets);
+  const resGetMyPets = useRecoilValue(getMyLostPets);
+  useEffect(() => {
+    setMyPets(resGetMyPets);
+  }, []);
+  return myPets;
 }
 
 // const updateUserData = selector({

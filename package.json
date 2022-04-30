@@ -17,12 +17,16 @@
     "start": "live-server"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^3.1.6",
     "@types/react": "^17.0.40",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
-    "live-server": "^1.2.1",
+    "live-server": "^1.1.0",
+    "mapbox-gl": "^2.8.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-dropzone": "^12.1.0",
+    "react-mapbox-gl": "^5.1.1",
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.0",
     "style-loader": "^3.3.1",

@@ -5,7 +5,6 @@ import { useUserEmail, useProfileData } from "../../hooks";
 
 export function SesionComp(props) {
   const [userEmail, setUserEmail] = useUserEmail();
-  useProfileData();
 
   return (
     <div className={css.secionContainer}>

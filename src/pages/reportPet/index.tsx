@@ -1,17 +1,18 @@
 import React from "react";
-import { MyLostPets } from "../../components/myPetsLost";
 import { MainText } from "../../ui/text-font";
 import css from "./index.css";
 import { useCheckLog } from "../../hooks";
+import { ReportForm } from "../../components/reportForm";
 
-export function MyPetsPage() {
+export function ReportPetPage() {
   useCheckLog();
+
   return (
     <div className={css.root}>
       <div className={css.title}>
-        <MainText title={true}>Mis mascotas reportadas</MainText>
+        <MainText title={true}>Reportar mascota perdida</MainText>
       </div>
-      <MyLostPets></MyLostPets>
+      <ReportForm></ReportForm>
     </div>
   );
 }

@@ -2,38 +2,26 @@ import React, { useEffect, useState } from "react";
 import { MainText } from "../../ui/text-font";
 import css from "./index.css";
 import { Modal } from "../modal";
+import editIcon from "../../img/editIcon.svg";
 
-type PropsNearPets = {
+type PropsMyPets = {
   picture: string;
   name: string;
   lastSeen: string;
 };
 
-export function NearPetsCard(props: PropsNearPets) {
-  const [modalStatus, setModalStatus] = useState(false);
-  const [petName, setPetName] = useState("");
-
-  function openModal() {
-    setModalStatus(true);
-  }
-
-  function closeModal() {
-    setModalStatus(false);
-  }
-
+export function MyPetsCard(props: PropsMyPets) {
   return (
     <div className={css.card}>
-      {modalStatus && <Modal closeModal={closeModal} petName={props.name} />}
-
       <img className={css["card-img"]} src={props.picture} />
       <div className={css["card-text"]}>
         <div>
           <div className={css.petName}>{props.name}</div>
           <div className={css.petLastSeen}>{props.lastSeen}</div>
         </div>
-        <p className={css.linkReport} onClick={openModal}>
-          REPORTAR INFORMACION
-        </p>
+        <div className={css.editBtn}>
+          <img src={editIcon} />
+        </div>
       </div>
     </div>
   );

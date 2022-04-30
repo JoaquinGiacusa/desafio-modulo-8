@@ -14,6 +14,7 @@ export function Header() {
   const [lastRoute, setLastRoute] = useState("");
   let navigate = useNavigate();
   var location = useLocation();
+  useProfileData();
 
   function handleBurger() {
     setLastRoute(location.pathname);
@@ -53,7 +54,11 @@ export function Header() {
               <Link onClick={closeHeader} className={css.link} to={"/my-pets"}>
                 Mis mascotas reportadas
               </Link>
-              <Link onClick={closeHeader} className={css.link} to={"/"}>
+              <Link
+                onClick={closeHeader}
+                className={css.link}
+                to={"/report-pet"}
+              >
                 Reportar mascota
               </Link>
             </div>

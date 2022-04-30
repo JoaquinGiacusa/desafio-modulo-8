@@ -1,0 +1,15 @@
+.thumbsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.imgContainer {
+  margin: 0 auto;
+}
+
+.img {
+  max-width: 329px;
+  max-height: 200px;
+  border: solid 3px black;
+  border-radius: 4px;
+}

@@ -6,3 +6,12 @@
   border: 1px;
   border-radius: 5px;
 }
+
+.blue {
+  background-color: #8af1ff;
+  width: 100%;
+  max-width: 335px;
+  height: 50px;
+  border: 1px;
+  border-radius: 5px;
+}

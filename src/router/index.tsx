@@ -8,6 +8,7 @@ import { SuccessPage } from "../pages/login/success";
 import { MyInfo } from "../pages/myInfo";
 import { MyPetsPage } from "../pages/myPets";
 import { PetsAroundPage } from "../pages/pets-around";
+import { ReportPetPage } from "../pages/reportPet";
 
 export function AppRoutes() {
   return (
@@ -22,6 +23,7 @@ export function AppRoutes() {
         </Route>
         <Route path="me" element={<MyInfo />} />
         <Route path="my-pets" element={<MyPetsPage />} />
+        <Route path="report-pet" element={<ReportPetPage />} />
       </Route>
     </Routes>
   );

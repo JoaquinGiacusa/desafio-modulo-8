@@ -7,27 +7,36 @@ import css from "./index.css";
 type PropsModal = {
   onSend?;
   closeModal;
+  petName: string;
 };
 
 export function Modal(props: PropsModal) {
-  console.log("MODAL XD");
-
   return (
     <div className={css.modalBackground}>
       <div className={css.modalContainer}>
-        <button onClick={props.closeModal}>X</button>
-        <MainText title={true}>Reportar info de Bobby</MainText>
-        <div>
-          <MainText>TU NOMBRE</MainText>
-          <TextField inputName="name" inputType="text"></TextField>
+        <div className={css.closeBtnContainer}>
+          <button className={css.closeBtn} onClick={props.closeModal}>
+            X
+          </button>
         </div>
-        <div>
-          <MainText>TU TELÉFONO</MainText>
-          <TextField inputName="name" inputType="text"></TextField>
-        </div>
-        <div>
-          <MainText>DONNDE LO VISTE?</MainText>
-          <textarea></textarea>
+        <div className={css.inputContainer}>
+          <div className={css.title}>
+            <p>
+              Reportar info de <strong>{props.petName}</strong>
+            </p>
+          </div>
+          <div>
+            <MainText>TU NOMBRE</MainText>
+            <TextField inputName="name" inputType="text"></TextField>
+          </div>
+          <div>
+            <MainText>TU TELÉFONO</MainText>
+            <TextField inputName="name" inputType="text"></TextField>
+          </div>
+          <div>
+            <MainText>DÓNDE LO VISTE?</MainText>
+            <textarea></textarea>
+          </div>
         </div>
         <MainButton onClick={() => {}}>Enviar</MainButton>
       </div>

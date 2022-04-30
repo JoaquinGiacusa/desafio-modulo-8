@@ -71,3 +71,49 @@ export async function updateUser(fullName, token, psw?) {
   const data = await res.json();
   return data;
 }
+
+//mis mascotas publicadas
+export async function getMyPets(token) {
+  const res = await fetch(API_BASE_URL + "/my-pets", {
+    headers: {
+      "content-type": "application/json",
+      Authorization: "bearer " + token,
+    },
+  });
+
+  const data = await res.json();
+
+  if (data != undefined) {
+    const petsLost = data.filter((pet) => {
+      return pet.lostStatus == true;
+    });
+    return petsLost;
+  } else {
+    return false;
+  }
+}
+
+export function createALostPet(token, petName, imageURL, lat, lng, lastSeen) {
+  fetch(API_BASE_URL + "/pet", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      Authorization: "bearer " + token,
+    },
+    body: JSON.stringify({
+      name: petName,
+      imageURL: imageURL,
+      last_location_lat: lat,
+      last_location_lng: lng,
+      lastSeen: lastSeen,
+      lostStatus: "",
+    }),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      console.log("createALostPet", data);
+    });
+  return true;
+}

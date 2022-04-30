@@ -1,0 +1,13 @@
+.root {
+  margin: 30px 0px;
+}
+
+.inputContainer {
+  width: 327px;
+}
+
+.formSearch {
+  margin-top: 20px;
+  display: grid;
+  gap: 8px;
+}

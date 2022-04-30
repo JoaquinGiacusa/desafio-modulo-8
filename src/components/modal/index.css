@@ -13,12 +13,36 @@
 }
 
 .modalContainer {
-  width: 320px;
-  height: 500px;
+  max-width: 300px;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
   padding: 25px;
+}
+
+.inputContainer {
+  display: grid;
+  gap: 20px;
+}
+
+.closeBtnContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.closeBtn {
+  border: none;
+  width: 15px;
+  height: 15px;
+  font-size: 18px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.title {
+  font-family: "Roboto";
+  font-size: 22px;
 }

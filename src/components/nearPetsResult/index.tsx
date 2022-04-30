@@ -3,30 +3,24 @@ import { MainText } from "../../ui/text-font";
 import { NearPetsCard } from "../nearPetsCard";
 import { useGetNearPets, useModalAction, useRedirectHome } from "../../hooks";
 import { Modal } from "../modal";
+import css from "./index.css";
 
 export function NearPetsResult() {
   const nearPets = useGetNearPets();
-  const [modalStatus, setModalStatus] = useModalAction();
-
-  function openModal() {
-    setModalStatus(true);
-  }
-
-  function closeModal() {
-    setModalStatus(false);
-  }
 
   return (
-    <div>
+    <div className={css.root}>
       {nearPets.length > 0 ? (
         <div>
-          {modalStatus && <Modal closeModal={closeModal} />}
-          <div>
+          <div className={css.title}>
+            <MainText title={true}>Mascotas perdidas cerca tuyo</MainText>
+          </div>
+          {/* {modalStatus && <Modal closeModal={closeModal} petName={petName} />} */}
+          <div className={css.cardsContaier}>
             {nearPets.map((p) => {
               return (
                 <div key={p.objectID}>
                   <NearPetsCard
-                    openModal={openModal}
                     picture={p.imageURL}
                     name={p.name}
                     lastSeen={p.lastSeen}
