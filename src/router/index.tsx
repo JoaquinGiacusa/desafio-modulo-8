@@ -9,6 +9,7 @@ import { MyInfo } from "../pages/myInfo";
 import { MyPetsPage } from "../pages/myPets";
 import { PetsAroundPage } from "../pages/pets-around";
 import { ReportPetPage } from "../pages/reportPet";
+import { EditPet } from "../pages/edit-pet";
 
 export function AppRoutes() {
   return (
@@ -24,6 +25,7 @@ export function AppRoutes() {
         <Route path="me" element={<MyInfo />} />
         <Route path="my-pets" element={<MyPetsPage />} />
         <Route path="report-pet" element={<ReportPetPage />} />
+        <Route path="edit-pet" element={<EditPet />} />
       </Route>
     </Routes>
   );

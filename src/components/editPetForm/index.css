@@ -1,0 +1,33 @@
+.root {
+  width: 340px;
+  margin: 0 auto;
+}
+
+.inputContainer {
+  margin: 30px 0px;
+}
+
+.inputName {
+  width: 327px;
+  height: 40px;
+  border: 2px solid #000000;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+.saveBtn {
+  margin-bottom: 10px;
+}
+
+.reportFind {
+  margin-bottom: 30px;
+}
+.deleteBtn {
+  color: #ff3a3a;
+  font-size: 16px;
+  text-decoration: underline;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}

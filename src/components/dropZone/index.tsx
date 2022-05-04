@@ -7,6 +7,7 @@ import { MainText } from "../../ui/text-font";
 
 type PropsDropZoneEl = {
   onChange?;
+  imageURL?;
 };
 
 export function DropZoneEl(props: PropsDropZoneEl) {
@@ -50,8 +51,12 @@ export function DropZoneEl(props: PropsDropZoneEl) {
   });
 
   return (
-    <section className="container">
-      {files.length == 0 && <img src={previewImg} />}
+    <section className={"container"}>
+      {files.length == 0 && (
+        <div className={css.containerPreviewImg}>
+          <img className={css.previewImg} src={props.imageURL || previewImg} />
+        </div>
+      )}
       <aside className={css.thumbsContainer}>{thumbs}</aside>
       <div {...getRootProps({ className: "dropzone" })}>
         <MainButton>

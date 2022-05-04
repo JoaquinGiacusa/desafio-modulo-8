@@ -1,4 +1,4 @@
-//const API_BASE_URL = "http://localhost:3005";
+// const API_BASE_URL = "http://localhost:3005";
 const API_BASE_URL = "https://desafio-modulo7.herokuapp.com";
 
 export async function getNearPets(lat, lng) {
@@ -84,16 +84,24 @@ export async function getMyPets(token) {
   const data = await res.json();
 
   if (data != undefined) {
-    const petsLost = data.filter((pet) => {
-      return pet.lostStatus == true;
-    });
-    return petsLost;
+    // const petsLost = data.filter((pet) => {
+    //   return pet.lostStatus == true;
+    // });
+    return data;
   } else {
     return false;
   }
 }
 
-export function createALostPet(token, petName, imageURL, lat, lng, lastSeen) {
+export function createALostPet(
+  token,
+  petName,
+  imageURL,
+  lat,
+  lng,
+  lastSeen,
+  callback
+) {
   fetch(API_BASE_URL + "/pet", {
     method: "POST",
     headers: {
@@ -113,7 +121,82 @@ export function createALostPet(token, petName, imageURL, lat, lng, lastSeen) {
       return res.json();
     })
     .then((data) => {
-      console.log("createALostPet", data);
+      callback();
+      //return data;
     });
-  return true;
+}
+
+//delete pet
+export function deletPet(token, petId, callback) {
+  fetch(API_BASE_URL + "/delet-pet/" + petId, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json",
+      Authorization: "bearer " + token,
+    },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+      if (data) {
+        callback();
+      }
+    });
+}
+
+//editar mascota
+export function editLostPet(
+  token,
+  petId,
+  petName,
+  imageURL,
+  lat,
+  lng,
+  lastSeen,
+  callback?
+) {
+  fetch(API_BASE_URL + "/update-pet", {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+      Authorization: "bearer " + token,
+    },
+    body: JSON.stringify({
+      petId,
+      updatedPetInfo: {
+        name: petName,
+        imageURL: imageURL,
+        last_location_lat: lat,
+        last_location_lng: lng,
+        lastSeen: lastSeen,
+        lostStatus: "",
+      },
+    }),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+      callback();
+    });
+}
+
+export function markFound(token, petId, callback?) {
+  fetch(API_BASE_URL + "/mark-found/" + petId, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+      Authorization: "bearer " + token,
+    },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+      callback();
+    });
 }

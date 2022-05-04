@@ -5,21 +5,21 @@ import { MainButton } from "../../ui/buttons";
 import { TextField } from "../../ui/text-field";
 import { MainText } from "../../ui/text-font";
 import css from "./index.css";
-//pk.35bc3411252dafff1ecbc7a3338da82f
+const mapToken = process.env.MAPBOX_TOKEN;
 
 type PropsMap = {
   onChange?;
+  coord?;
+  lastSeen?;
 };
 
 const Map = ReactMapboxGl({
-  accessToken:
-    "pk.eyJ1IjoiZ2lhY3VzYWoiLCJhIjoiY2t6aGxpdGxxMDU4djMxbnl5aWpvdnZ5cyJ9.KQi6_aWaxCKOPDU4KMu3YQ",
+  accessToken: mapToken,
 });
 
 export function MapBoxEl(props: PropsMap) {
   const [marker, setMarker] = useState(false);
-  const [cords, setCords] = useState([-60.7151117, -31.6441985]);
-  const [lastSeen, setLastSeen] = useState("");
+  const [cords, setCords] = useState(props.coord);
 
   function onClickMap(map, evt) {
     const lat = evt.lngLat.lat;
@@ -28,10 +28,6 @@ export function MapBoxEl(props: PropsMap) {
     setMarker(true);
     searcByCoord(lat.toString(), lng.toString());
   }
-
-  useEffect(() => {
-    props.onChange({ cords, lastSeen });
-  }, [lastSeen]);
 
   async function searcByCoord(lat, lng) {
     try {
@@ -46,7 +42,8 @@ export function MapBoxEl(props: PropsMap) {
       const data = await res.json();
 
       const lastSeen = data.display_name;
-      setLastSeen(lastSeen);
+
+      props.onChange({ cords: [lng, lat], lastSeen });
     } catch (e) {
       console.log(e);
     }
@@ -63,8 +60,9 @@ export function MapBoxEl(props: PropsMap) {
       const lastSeen = data[0].display_name;
       const lng = data[0].lon;
       const lat = data[0].lat;
-      setLastSeen(lastSeen);
+
       setCords([lng, lat]);
+      props.onChange({ cords: [lng, lat], lastSeen });
     } catch {
       window.alert("Ubicacion no encontrada");
     }
@@ -107,7 +105,11 @@ export function MapBoxEl(props: PropsMap) {
           haciendo click.
         </MainText>
         <div className={css.inputContainer}>
-          <TextField inputType="text" inputName="search"></TextField>
+          <TextField
+            inputType="text"
+            inputName="search"
+            initialValue={props.lastSeen}
+          ></TextField>
         </div>
         <MainButton>
           <MainText>Buscar</MainText>

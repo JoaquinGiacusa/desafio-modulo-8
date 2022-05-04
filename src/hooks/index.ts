@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useRecoilRefresher_UNSTABLE } from "recoil";
 import {
   useRecoilValue,
   useRecoilState,
@@ -190,23 +191,72 @@ const getMyLostPets = selector({
   get: async ({ get }) => {
     const token = get(authToken);
     if (token) {
+      console.log("pase por aca");
+
       const res = await getMyPets(token);
       console.log("res", res);
       return res;
-    } else {
-      return "xd";
     }
+    // else {
+    //   return "xd";
+    // }
   },
 });
 
 export function useMyLostPets() {
   const [myPets, setMyPets] = useRecoilState(myLostPets);
   const resGetMyPets = useRecoilValue(getMyLostPets);
+
   useEffect(() => {
     setMyPets(resGetMyPets);
-  }, []);
+    /////////////
+  }, [resGetMyPets]);
   return myPets;
 }
+
+//ultima ruta
+// const lastRoute = atom({
+//   key: "lastRoute",
+//   default: "",
+// });
+// export const useLastRoute = () => useRecoilState(lastRoute);
+
+//idPet para editer atom
+const petInfoEdit = atom({
+  key: "petInfoEdit",
+  default: { id: 0, petName: "", coord: [], lastSeen: "", imageURL: "" },
+});
+
+export const usePetInfo = () => useRecoilState(petInfoEdit);
+
+/////////////////////////test
+// export const getTest = selector({
+//   key: "getTest",
+//   get: async ({ get }) => {
+//     const token = get(authToken);
+//     console.log(token);
+
+//     console.log("pase por aca test");
+
+//     const res = await getMyPets(token);
+//     console.log("res", res);
+//     return res;
+
+//     // else {
+//     //   return "xd";
+//     // }
+//   },
+// });
+export function useRefreshPets() {
+  // const resGetMyPets = useRecoilValue(gegetTesttTest);
+  // return useRecoilRefresher_UNSTABLE(resGetMyPets);
+  return useRecoilRefresher_UNSTABLE(getMyLostPets);
+}
+
+// export function useMyLostPetsTest() {
+//   const resGetMyPets = useRecoilValue(getTest);
+//   return resGetMyPets;
+// }
 
 // const updateUserData = selector({
 //   key: "updateUserData",
