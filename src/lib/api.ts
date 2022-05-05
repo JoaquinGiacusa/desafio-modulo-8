@@ -1,4 +1,4 @@
-// const API_BASE_URL = "http://localhost:3005";
+//const API_BASE_URL = "http://localhost:3005";
 const API_BASE_URL = "https://desafio-modulo7.herokuapp.com";
 
 export async function getNearPets(lat, lng) {
@@ -199,4 +199,47 @@ export function markFound(token, petId, callback?) {
       console.log(data);
       callback();
     });
+}
+
+export function createUser(fullName, email, psw, callback) {
+  fetch(API_BASE_URL + "/auth", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      fullName: fullName,
+      email: email,
+      password: psw,
+    }),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+      callback();
+    });
+}
+
+export async function setReportInfo(
+  fullName,
+  phoneNum,
+  lastSeen,
+  petId,
+  callback
+) {
+  const reportInfo = {
+    fullName: fullName,
+    phoneNum: phoneNum,
+    lastSeen: lastSeen,
+    petId: petId,
+  };
+
+  const res = await fetch(API_BASE_URL + "/report", {
+    method: "post",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(reportInfo),
+  });
+  const data = await res.json();
+  console.log(data);
+  await callback();
 }

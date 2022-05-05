@@ -24,6 +24,7 @@ export function NearPetsResult() {
                     picture={p.imageURL}
                     name={p.name}
                     lastSeen={p.lastSeen}
+                    petId={p.objectID}
                   />
                 </div>
               );

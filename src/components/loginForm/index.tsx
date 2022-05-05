@@ -12,8 +12,6 @@ import { Spinner } from "../../ui/spinner";
 
 function Login() {
   const [loader, setLoader] = useState(false);
-  console.log(loader);
-
   const [userEmail, setUserEmail] = useUserEmail();
   const navigate = useNavigate();
 
@@ -24,6 +22,8 @@ function Login() {
 
     const results = await checkEmailUser(email);
     if (results == "user doesn't exist") {
+      setUserEmail(email);
+      navigate("/sign-up");
       console.log(results);
     } else {
       setUserEmail(email);

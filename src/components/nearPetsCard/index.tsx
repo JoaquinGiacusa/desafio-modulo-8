@@ -7,11 +7,12 @@ type PropsNearPets = {
   picture: string;
   name: string;
   lastSeen: string;
+  petId: string;
 };
 
 export function NearPetsCard(props: PropsNearPets) {
   const [modalStatus, setModalStatus] = useState(false);
-  const [petName, setPetName] = useState("");
+  //const [petName, setPetName] = useState("");
 
   function openModal() {
     setModalStatus(true);
@@ -23,7 +24,13 @@ export function NearPetsCard(props: PropsNearPets) {
 
   return (
     <div className={css.card}>
-      {modalStatus && <Modal closeModal={closeModal} petName={props.name} />}
+      {modalStatus && (
+        <Modal
+          closeModal={closeModal}
+          petName={props.name}
+          petId={props.petId}
+        />
+      )}
 
       <img className={css["card-img"]} src={props.picture} />
       <div className={css["card-text"]}>

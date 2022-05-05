@@ -10,6 +10,7 @@ import { MyPetsPage } from "../pages/myPets";
 import { PetsAroundPage } from "../pages/pets-around";
 import { ReportPetPage } from "../pages/reportPet";
 import { EditPet } from "../pages/edit-pet";
+import { SignUp } from "../pages/sign-up";
 
 export function AppRoutes() {
   return (
@@ -22,6 +23,7 @@ export function AppRoutes() {
           <Route path="password" element={<PasswordPage />} />
           <Route path="success" element={<SuccessPage />} />
         </Route>
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="me" element={<MyInfo />} />
         <Route path="my-pets" element={<MyPetsPage />} />
         <Route path="report-pet" element={<ReportPetPage />} />
