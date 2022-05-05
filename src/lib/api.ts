@@ -17,8 +17,6 @@ export async function checkEmailUser(email) {
     console.error(data);
     return data;
   } else {
-    console.log("aca si existe");
-
     return data;
   }
 }
@@ -84,9 +82,6 @@ export async function getMyPets(token) {
   const data = await res.json();
 
   if (data != undefined) {
-    // const petsLost = data.filter((pet) => {
-    //   return pet.lostStatus == true;
-    // });
     return data;
   } else {
     return false;
@@ -139,7 +134,6 @@ export function deletPet(token, petId, callback) {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
       if (data) {
         callback();
       }
@@ -179,7 +173,6 @@ export function editLostPet(
       return res.json();
     })
     .then((data) => {
-      console.log(data);
       callback();
     });
 }
@@ -196,7 +189,6 @@ export function markFound(token, petId, callback?) {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
       callback();
     });
 }
@@ -215,7 +207,6 @@ export function createUser(fullName, email, psw, callback) {
       return res.json();
     })
     .then((data) => {
-      console.log(data);
       callback();
     });
 }
@@ -240,6 +231,6 @@ export async function setReportInfo(
     body: JSON.stringify(reportInfo),
   });
   const data = await res.json();
-  console.log(data);
+
   await callback();
 }

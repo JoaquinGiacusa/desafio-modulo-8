@@ -23,7 +23,6 @@ export function Modal(props: PropsModal) {
     const lastSeen = e.target.lastSeen.value;
     const petId = props.petId;
 
-    console.log(petName, phoneNum, lastSeen, petId);
     setReportInfo(petName, phoneNum, lastSeen, petId, () => {
       window.alert("Reporte enviado con éxito");
       navigate("/");

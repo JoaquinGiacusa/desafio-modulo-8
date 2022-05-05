@@ -60,9 +60,6 @@ export function EditPetForm() {
     });
   }
   function handleMarkFound() {
-    //refresh();
-    console.log("reportado como encontrado");
-
     markFound(token, petInfo.id, () => {
       navigate("/my-pets");
     });

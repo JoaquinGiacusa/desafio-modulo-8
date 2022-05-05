@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import ReactMapboxGl, { Layer, Feature, Marker } from "react-mapbox-gl";
+import React, { useState } from "react";
+import ReactMapboxGl, { Layer, Marker } from "react-mapbox-gl";
 import petHand from "../../img/petHand.svg";
 import { MainButton } from "../../ui/buttons";
 import { TextField } from "../../ui/text-field";
@@ -45,9 +45,7 @@ export function MapBoxEl(props: PropsMap) {
       const lastSeen = data.display_name;
 
       props.onChange({ cords: [lng, lat], lastSeen });
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   }
 
   async function searcByString(search) {

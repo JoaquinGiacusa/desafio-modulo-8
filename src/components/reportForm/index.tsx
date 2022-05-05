@@ -24,8 +24,6 @@ export function ReportForm() {
   }
 
   function getMapInfo(e) {
-    console.log(e.cords);
-
     setCords(e.cords);
     setLastSeen(e.lastSeen);
   }
@@ -35,8 +33,6 @@ export function ReportForm() {
   }
 
   function reportHandler() {
-    //console.log(petName, urlImg, cords, lastSeen);
-
     setLoader(true);
     if (token && petName && urlImg && cords[1] && cords[0] && lastSeen) {
       createALostPet(

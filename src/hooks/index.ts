@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilRefresher_UNSTABLE } from "recoil";
-import {
-  useRecoilValue,
-  useRecoilState,
-  useResetRecoilState,
-  RecoilState,
-} from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { atom, selector } from "recoil";
-import {
-  getNearPets,
-  checkEmailUser,
-  getProfile,
-  updateUser,
-  getMyPets,
-} from "../lib/api";
+import { getNearPets, checkEmailUser, getProfile, getMyPets } from "../lib/api";
 
 //===>
 const locPermission = atom({
@@ -22,16 +11,6 @@ const locPermission = atom({
   default: false,
 });
 
-// export function useLocPermiss() {
-//   const [locPermiss, useLocPermiss] = useRecoilState(locPermission);
-//   const navigate = useNavigate();
-//   //si tengo la ubi paso a mostras los resultados directamente
-//   useEffect(() => {
-//     if (locPermiss) {
-//       navigate("/near-lost-pets");
-//     }
-//   }, [locPermiss]);
-// }
 export const useGetLocPermiss = () => useRecoilState(locPermission);
 
 //===>
@@ -75,7 +54,6 @@ const searchNearPets = selector({
 
 export function useGetNearPets() {
   const results = useRecoilValue(searchNearPets);
-  console.log(results);
 
   return results;
 }
@@ -100,15 +78,6 @@ export function useCheckLog() {
     }
   }, [token]);
 }
-
-//////=>HEADER
-// const headerStatus = atom({
-//   key: "headerStatus",
-//   default: false,
-// });
-
-// export const useHeaderStatus = () => useRecoilState(headerStatus);
-/////
 
 //////=> My info
 const userEmail = atom({
@@ -176,8 +145,6 @@ export function useProfileData() {
       setUserEmail(userData.email);
     }
   }, [userData]);
-
-  // return userName;
 }
 
 //mis mascotas publicadas
@@ -191,15 +158,9 @@ const getMyLostPets = selector({
   get: async ({ get }) => {
     const token = get(authToken);
     if (token) {
-      console.log("pase por aca");
-
       const res = await getMyPets(token);
-      console.log("res", res);
       return res;
     }
-    // else {
-    //   return "xd";
-    // }
   },
 });
 
@@ -214,13 +175,6 @@ export function useMyLostPets() {
   return myPets;
 }
 
-//ultima ruta
-// const lastRoute = atom({
-//   key: "lastRoute",
-//   default: "",
-// });
-// export const useLastRoute = () => useRecoilState(lastRoute);
-
 //idPet para editer atom
 const petInfoEdit = atom({
   key: "petInfoEdit",
@@ -229,57 +183,6 @@ const petInfoEdit = atom({
 
 export const usePetInfo = () => useRecoilState(petInfoEdit);
 
-/////////////////////////test
-// export const getTest = selector({
-//   key: "getTest",
-//   get: async ({ get }) => {
-//     const token = get(authToken);
-//     console.log(token);
-
-//     console.log("pase por aca test");
-
-//     const res = await getMyPets(token);
-//     console.log("res", res);
-//     return res;
-
-//     // else {
-//     //   return "xd";
-//     // }
-//   },
-// });
 export function useRefreshPets() {
-  // const resGetMyPets = useRecoilValue(gegetTesttTest);
-  // return useRecoilRefresher_UNSTABLE(resGetMyPets);
   return useRecoilRefresher_UNSTABLE(getMyLostPets);
 }
-
-// export function useMyLostPetsTest() {
-//   const resGetMyPets = useRecoilValue(getTest);
-//   return resGetMyPets;
-// }
-
-// const updateUserData = selector({
-//   key: "updateUserData",
-//   get: async ({ get }) => {
-//     const token = get(authToken);
-//     //retorna la llamada a la api
-
-//     const res = await updateUser("Josesito", token);
-//     return res;
-//   },
-// });
-
-// export function useTokenStatus() {
-//   const [authToken, setAuthToken] = useAuthToken();
-//   return authToken ? true : false;
-// }
-
-// //hook para borrar el token y cerrar sesion
-// export function useLogout() {
-//   const [token, setToken] = useRecoilState(authToken);
-//   sessionStorage.clear();
-//   console.log("puto el que lee", token);
-
-//   const resetToken = useResetRecoilState(authToken);
-//   //return resetToken;
-// }

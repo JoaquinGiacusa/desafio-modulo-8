@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useMyLostPets, useRefreshPets } from "../../hooks";
+import React from "react";
+import { useMyLostPets } from "../../hooks";
 import { MainText } from "../../ui/text-font";
 import { MyPetsCard } from "../myPetsCard";
 import css from "./index.css";

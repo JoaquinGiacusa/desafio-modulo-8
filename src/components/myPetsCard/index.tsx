@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { MainText } from "../../ui/text-font";
+import React from "react";
 import css from "./index.css";
-import { Modal } from "../modal";
 import editIcon from "../../img/editIcon.svg";
 import { usePetInfo } from "../../hooks";
 import { useNavigate } from "react-router-dom";

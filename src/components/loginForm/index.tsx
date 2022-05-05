@@ -24,14 +24,11 @@ function Login() {
     if (results == "user doesn't exist") {
       setUserEmail(email);
       navigate("/sign-up");
-      console.log(results);
     } else {
       setUserEmail(email);
       navigate("/login/password");
     }
   }
-
-  //useEffect(() => {}, [loader]);
 
   return (
     <form className={css.root} onSubmit={submitHandler}>

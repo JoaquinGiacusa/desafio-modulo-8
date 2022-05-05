@@ -3,12 +3,7 @@ import { MainButton } from "../../ui/buttons";
 import { MainText } from "../../ui/text-font";
 import { TextField } from "../../ui/text-field";
 import { createUser, signIn } from "../../lib/api";
-import {
-  useUserName,
-  useProfileData,
-  useAuthToken,
-  useUserEmail,
-} from "../../hooks";
+import { useUserName, useAuthToken, useUserEmail } from "../../hooks";
 import css from "./index.css";
 import { Spinner } from "../../ui/spinner";
 import { useNavigate } from "react-router-dom";
@@ -27,7 +22,6 @@ export function RegisterFrom() {
     }
   }, [userEmail]);
 
-  //const userName = "anashei";
   function submitHandler(e) {
     e.preventDefault();
     const name = e.target.name.value;

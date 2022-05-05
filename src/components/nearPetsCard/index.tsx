@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { MainText } from "../../ui/text-font";
+import React, { useState } from "react";
+
 import css from "./index.css";
 import { Modal } from "../modal";
 
@@ -12,7 +12,6 @@ type PropsNearPets = {
 
 export function NearPetsCard(props: PropsNearPets) {
   const [modalStatus, setModalStatus] = useState(false);
-  //const [petName, setPetName] = useState("");
 
   function openModal() {
     setModalStatus(true);

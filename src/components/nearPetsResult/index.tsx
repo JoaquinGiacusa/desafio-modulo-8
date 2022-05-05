@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MainText } from "../../ui/text-font";
 import { NearPetsCard } from "../nearPetsCard";
-import { useGetNearPets, useModalAction, useRedirectHome } from "../../hooks";
-import { Modal } from "../modal";
+import { useGetNearPets } from "../../hooks";
+
 import css from "./index.css";
 
 export function NearPetsResult() {
@@ -15,7 +15,7 @@ export function NearPetsResult() {
           <div className={css.title}>
             <MainText title={true}>Mascotas perdidas cerca tuyo</MainText>
           </div>
-          {/* {modalStatus && <Modal closeModal={closeModal} petName={petName} />} */}
+
           <div className={css.cardsContaier}>
             {nearPets.map((p) => {
               return (

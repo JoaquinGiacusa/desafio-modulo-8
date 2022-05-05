@@ -31,9 +31,7 @@ export function Header() {
   }
 
   function handleLogout() {
-    console.log("antes", authToken);
     setAuthToken(null);
-    console.log("despues", authToken);
     sessionStorage.clear();
   }
 
