@@ -6,6 +6,7 @@ import { TextField } from "../../ui/text-field";
 import { MainText } from "../../ui/text-font";
 import css from "./index.css";
 const mapToken = process.env.MAPBOX_TOKEN;
+console.log("mapToken");
 
 type PropsMap = {
   onChange?;
