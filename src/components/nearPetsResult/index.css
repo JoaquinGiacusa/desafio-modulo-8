@@ -5,4 +5,7 @@
 
 .cardsContaier {
   margin: 0 auto;
+  display: grid;
+  gap: 30px;
+  margin-bottom: 20px;
 }
