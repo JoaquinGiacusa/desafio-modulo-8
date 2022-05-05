@@ -5,8 +5,8 @@ import { MainButton } from "../../ui/buttons";
 import { TextField } from "../../ui/text-field";
 import { MainText } from "../../ui/text-font";
 import css from "./index.css";
-const mapToken = process.env.MAPBOX_TOKEN;
-console.log("mapToken");
+const mapToken =
+  "pk.eyJ1IjoiZ2lhY3VzYWoiLCJhIjoiY2t6aGxpdGxxMDU4djMxbnl5aWpvdnZ5cyJ9.KQi6_aWaxCKOPDU4KMu3YQ";
 
 type PropsMap = {
   onChange?;
