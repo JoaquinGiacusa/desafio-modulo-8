@@ -1,6 +1,8 @@
 # [LostPets](https://github.com/JoaquinGiacusa/desafio-modulo-7) adapted to React
-REACT | RECOIL | TYPESCRIPT  | MAPBOX | DROPZONE | WEBPACK | FIREBASE HOSTING
 
+#### Link: https://modulo8-apx.web.app/
 [Back-end/API](https://github.com/JoaquinGiacusa/desafio-modulo-7)
 
-URL: https://modulo8-apx.web.app/
+REACT | RECOIL | TYPESCRIPT  | MAPBOX | DROPZONE | WEBPACK | FIREBASE HOSTING
+
+
